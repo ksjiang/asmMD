@@ -1,0 +1,10 @@
+LIBRARY asmMD
+EXPORTS
+LibMain
+LJc
+LJuc
+LJinit
+LJforceEval
+LJenergyEval
+LJenergyDiff
+init3DGrid
