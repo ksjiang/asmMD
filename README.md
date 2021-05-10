@@ -3,10 +3,13 @@ A set of functions for molecular dynamics built in x86-64
 
 
 
-## Calling Conventions
-Functions follow Microsoft `_stdcall` calling conventions. All arguments are passed via stack; callee cleans up the arguments.
-Register clobbers: `rax` = return value, if there is one
-Preserves all other registers (standard and XMM), but certainly don't rely on it!!
+## Details
+
+### Calling Convention
+Functions follow Microsoft `_stdcall` calling conventions. All arguments are passed via stack; callee cleans up the arguments. In general, caller provides the memory for coordinates and forces; all memory allocated by functions in `asmMD` are freed upon returning.
+
+### Register Clobbers
+Preserves all registers other than `rax` (standard and XMM), but certainly don't rely on it!!
 
 
 
