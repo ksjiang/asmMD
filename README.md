@@ -48,3 +48,8 @@ The length of the box (which is determined by the number of particles and densit
 
 ## Numerical Uncertainty
 All functions follow the IEEE-754 standard for 64-bit doubles. The machine epsilon (relative error ratio bound) for this representation is `2.2E-16`. However, with multiple successive floating point operations, this error accumulates; in the worst case, at a rate of the machine epsilon per FLOP.
+
+
+
+## Known Issues
+Running with very large timesteps or with unphysical values will almost certainly result in memory access violation errors caused by floating point calculations. For instance, taking `dt = 1.0` in `LJstep` will result in very large particle displacements, and the ensuing call to `pbc3d` may produce a value too large to be stored as a 32-bit signed integer. In this case, particles may be left outside of the box at incorrect positions, and following calls to `LJforceEval` or `LJenergyEval` will fail.
