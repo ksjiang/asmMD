@@ -10,9 +10,9 @@ extern "C" void _stdcall LJforceEval(int nPart, double* X_, double* L, double* F
 extern "C" void _stdcall LJenergyEval(int nPart, double* X_, double* L, double* U);
 extern "C" void _stdcall LJenergyDiff(int nPart, double* X_, double* L, int i, double* deltaU);
 extern "C" void _stdcall LJpressureEval(int nPart, double* X_, double* L, double* Pxyz_);
-extern "C" void _stdcall LJstep(int nPart, double* X_, double* V_, double* F_, double* delT);
+extern "C" void _stdcall LJstep(int nPart, double* X_, double* BOX, double* V_, double* F_, double* delT);
 extern "C" void _stdcall init3DGrid(int nPart, double* dens, double* L, double* grid);
-extern "C" void _stdcall pbc3d(int nPart, double* X_, double* L);
+extern "C" void _stdcall pbc3d(int nPart, double* X_, double* BOX, double* L);
 extern "C" void _stdcall dblBufferVec4Cpy(double* buf1, double* buf2, int nPart);
 extern "C" void _stdcall dblBufferVec4Mul(double* buf, double* vec, int nPart);
 extern "C" void _stdcall dblBufferVec4Add(double* buf, double* vec, int nPart);

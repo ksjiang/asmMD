@@ -1589,7 +1589,7 @@ LJpressureEval endp
 
 
 
-LJstep proc nPart:DWORD, X_:DWORD, V_:DWORD, F_:DWORD, delT:DWORD
+LJstep proc nPart:DWORD, X_:DWORD, BOX:DWORD, V_:DWORD, F_:DWORD, delT:DWORD
 	; enter
 	sub esp, 30h
 	movdqu [ebp - 10h], xmm0
@@ -1660,6 +1660,7 @@ LJstep proc nPart:DWORD, X_:DWORD, V_:DWORD, F_:DWORD, delT:DWORD
 
 	; correct for 3D PBC
 	push dword ptr [LJLint]
+	push dword ptr [BOX]
 	push dword ptr [X_]
 	push dword ptr [nPart]
 	call pbc3d
@@ -1849,7 +1850,7 @@ init3DGrid endp
 
 
 
-pbc3d proc nPart:DWORD, X_:DWORD, L:DWORD
+pbc3d proc nPart:DWORD, X_:DWORD, BOX:DWORD, L:DWORD
 	; enter
 	sub esp, 40h
 	movdqu [ebp - 10h], xmm0
@@ -1914,7 +1915,6 @@ pbc3d7:
 @
 
 pbc3d1:
-	mov esi, dword ptr [X_]
 	mov ecx, dword ptr [nPart]
 	xor ebx, ebx
 
@@ -1922,6 +1922,7 @@ pbc3d2:
 	xor edx, edx
 
 pbc3d3:
+	mov esi, dword ptr [X_]
 	lea edi, [ebx + 8 * edx]
 	movsd xmm0, qword ptr [esi + edi]
 	ucomisd xmm0, qword ptr [LJLint]
@@ -1939,6 +1940,10 @@ pbc3d4:									; need to correct
 	mulsd xmm0, qword ptr [LJLint]
 	movsd xmm1, qword ptr [esi + edi]
 	subsd xmm1, xmm0
+	movsd qword ptr [esi + edi], xmm1
+	mov esi, dword ptr [BOX]			; make correction to box coordinates
+	movsd xmm1, qword ptr [esi + edi]
+	addsd xmm1, xmm0
 	movsd qword ptr [esi + edi], xmm1
 
 pbc3d5:
