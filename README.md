@@ -13,10 +13,12 @@ Preserves all registers other than `rax` (standard and XMM), but certainly don't
 
 
 
-## Versions
+## Versions and Fixes
 Two versions are currently available.
-`asmMD` - version 1
-`asmMD_ver2` - version 2
+
+`asmMD` - version 1.
+
+`asmMD_ver2` - version 2. Explicitly raises CPU floating-point exception when the particle's box coordinate cannot fit inside a 32-bit signed integer.
 
 
 
