@@ -1,0 +1,19 @@
+LIBRARY asmMD_rev2
+EXPORTS
+LibMain
+LJc
+LJuc
+LJinit
+LJforceEval
+LJenergyEval
+LJenergyDiff
+LJpressureEval
+LJstep
+init3DGrid
+pbc3d
+dblBufferVec4Cpy
+dblBufferVec4Mul
+dblBufferVec4Add
+dblBufferVec4Sum
+dblBuffer2Vec4Sum
+dblBuffer2Vec3Dot
