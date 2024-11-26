@@ -38,7 +38,7 @@ Not currently supported because this version uses `kernel32`'s `GlobalAlloc()` a
 ### Platform-Independent
 
 #### Python
-Import the library with `ctypes`; for examaple, using `asmMD = ctypes.DLL("C:\\path\\to\\DLL\\asmMD.dll")`. Then just use the functions within as usual, making sure that Python datatypes passed are compatible with the function signature in `asmMD.h`. For instance, to initialize a 3D box, use the following:
+Import the library with `ctypes`; for example, using `asmMD = ctypes.DLL("C:\\path\\to\\DLL\\asmMD.dll")`. Then just use the functions within as usual, making sure that Python datatypes passed are compatible with the function signature in `asmMD.h`. For instance, to initialize a 3D box, use the following:
 
 ```python
 import ctypes
